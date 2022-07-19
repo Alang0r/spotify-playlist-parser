@@ -2,28 +2,28 @@ package main
 
 import (
 	"encoding/json"
+	"io/ioutil"
 	"log"
 	"os"
 	lib "spotify-playlist-parser/lib"
 )
 
-
-const(
+const (
 	filename = "playlist1.json"
 )
+
 func main() {
-	file, err := os.Open(filename)
+	jsonFile, err := os.Open(filename)
 	if err != nil {
 		log.Printf("Error reading file %s: %s", filename, err)
 	}
-	defer file.Close()
+	defer jsonFile.Close()
 
 	byteValue, _ := ioutil.ReadAll(jsonFile)
 
-	var playlists []lib.Playlist
-	json.Unmarshal(byteValue, playlists)
-
-
+	var file lib.File
+	json.Unmarshal(byteValue, file)
 	
+
 
 }
